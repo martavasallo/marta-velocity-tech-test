@@ -4,9 +4,24 @@
 
 A Shopify-based collection page experience with dynamic cart functionality built using the AJAX API.
 
-## Live preview
+## Setup
 
-https://your-store-name.myshopify.com/collections/all
+To run this project locally:
+
+1. Clone the repository
+
+2. Ensure you have the Shopify CLI installed
+
+3. Run the development server:
+
+```
+shopify theme dev --store=velocity-tech-test --password=YOUR_THEME_ACCESS_PASSWORD
+```
+
+4. Open the local development URL provided by Shopify CLI
+
+Note: A valid theme access password is required to run the project locally. This is not included in the repository for security reasons.
+
 
 ## Overview
 This project is a Shopify-based ecommerce implementation focused on the collection page experience. It allows users to browse products, adjust quantities, and add items to the cart directly from the collection page.
