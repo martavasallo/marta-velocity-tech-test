@@ -1,0 +1,52 @@
+{% comment %} <button class="open-cart-button" type="button">Open cart</button> {% endcomment %}
+{% comment %} fetch('/collections/all/products.json')
+  .then(res => res.json())
+  .then(data => console.log(data)); {% endcomment %}
+
+<section class="collection-page">
+  <div class="collection-page__inner">
+    <h1 class="collection-page__title">{{ collection.title }}</h1>
+
+    <div class="collection-grid">
+      {% for product in collection.products %}
+        <div class="product-card">
+          <div class="product-card__top">
+            {% assign now_timestamp = 'now' | date: '%s' %}
+            {% assign created_at_timestamp = product.created_at | date: '%s' %}
+            {% assign seconds_since_created = now_timestamp | minus: created_at_timestamp %}
+            {% assign days_since_created = seconds_since_created | divided_by: 86400 %}
+
+
+            <span class="product-card__badge {% if days_since_created <= 575 %}is-visible{% endif %}">
+              {% if days_since_created <= 575 %}
+                New
+              {% endif %}
+            </span>
+            <button class="product-card__wishlist" type="button" aria-label="Add to wishlist">♡</button>
+          </div>
+
+          <img
+            src="{{ product.featured_image | image_url: width: 600 }}"
+            alt="{{ product.title }}"
+            class="product-card__image"
+          >
+
+          <div class="product-card__content">
+            <h2 class="product-card__title">{{ product.title }}</h2>
+            <div class="product-card__divider"></div>
+          </div>
+
+          <div class="product-card__bottom">
+            <div class="quantity-selector" data-variant-id="{{ product.variants.first.id }}">
+              <button class="quantity-selector__button quantity-selector__button--minus" type="button">−</button>
+              <span class="quantity-selector__value">0</span>
+              <button class="quantity-selector__button quantity-selector__button--plus" type="button">+</button>
+            </div>
+
+            <p class="product-card__price">{{ product.price | money }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

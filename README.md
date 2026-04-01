@@ -1,58 +1,103 @@
 <img src="./velocity-tech-test.png" alt="drawing" width="100%"/>
 
-## Welcome, Developer!
+# Shopify Cart Drawer Implementation
 
-You've been tasked with helping Digital Velocity bring a fresh collection page and a functional cart drawer to life. Your goal is to build these features from scratch, incorporating a structure for styling, JavaScript, and HTML that best suits your development style and approach.
+A Shopify-based collection page experience with dynamic cart functionality built using the AJAX API.
 
-The purpose of this exercise isn't to complete everything but rather to demonstrate your thought process, coding practices, and overall implementation skills. You're free to spend as much or as little time on it as you're comfortable with.
+## Overview
+This project is a Shopify-based ecommerce implementation focused on the collection page experience. It allows users to browse products, adjust quantities, and add items to the cart directly from the collection page.
 
-### Challange
+A custom cart drawer is implemented using Shopify’s AJAX API, enabling users to view and manage their cart dynamically, including updating item quantities and cart state, without requiring a page reload.
 
-1. #### Collection Page
+## Approach
+The implementation was built progressively, focusing on getting a complete end-to-end flow working first, and then refining each part.
 
-    Build a Collection Page that displays a grid of products, styled and structured to match the design specifications.
+1. **Render product cards**
+   Started by building the collection page and identifying key interactions such as quantity controls and add-to-cart actions. The structure was kept simple to ensure the core functionality was reliable.
 
-2. #### Cart Drawer
+2. **Implement quantity controls**
+   Added plus and minus controls to allow users to update product quantities directly from the collection page. This helped separate UI behaviour from cart logic.
 
-    Implement a Cart Drawer that slides out and allows users to view and manage their cart seamlessly.
+3. **Integrate Shopify AJAX API**
+   Connected cart functionality using Shopify’s AJAX API, enabling products to be added and updated without a page reload. The focus here was on ensuring correct communication with the cart endpoints.
 
-## Getting Started
+4. **Build cart drawer UI**
+   Created the cart drawer interface to display cart contents in a dedicated panel, driven by the data returned from the API.
 
-To get started follow the setup steps below:
+5. **Synchronise cart state**
+   Implemented cart fetching and re-rendering after each interaction to keep item quantities, totals, points, and the cart counter consistent across the UI.
 
-1. Fork this repository and navigate into the project directory.
-2. Run the following commands:
+Throughout the process, I prioritised clarity and simplicity over premature optimisation. Some edge cases and enhancements were intentionally kept minimal to stay within scope and to allow for discussion during the interview.
 
-```
-shopify theme push --store=velocity-tech-test --password=shptka_ea1e90de841c7cdaeb2ce101dd28caa6
-shopify theme list (find the theme ID for the one you just pushed)
-shopify theme dev --store=velocity-tech-test --password=shptka_ea1e90de841c7cdaeb2ce101dd28caa6 --theme=<theme-ID>
-```
+## Features
 
-You may be asked for a store password which is the following: piepea
+- **Add to cart from collection page**
+  Users can add products directly from the collection page without navigating to a product detail page.
 
-Please feel free to use your own development store if you'd prefer. We have provided this for ease of getting started.
+- **Direct quantity updates from the collection page**
+  Product quantities can be increased or decreased directly from the collection page using plus and minus controls, with each interaction updating the cart immediately.
 
-## Project Designs
+- **Cart drawer with live updates**
+  A custom cart drawer allows users to view and manage their cart without leaving the page. Cart data is updated dynamically after each interaction to reflect the current state.
 
-URL: https://www.figma.com/design/TkWkSt0pv0zW2wCvNgcvQq/Velocity---Tech-Test?node-id=0-1&m=dev&t=h5BxnTuRw1MdlGcn-1
-Password: v3l0c1ty
+- **Cart state synchronisation**
+  Cart contents, totals, and item count are updated after each interaction to ensure consistency across the UI.
 
-Note – you may be required to log in to access editing tools to find out css properties.
+- **Clear cart functionality with confirmation**
+  A clear action is available within the cart drawer, allowing users to remove all items at once. A confirmation prompt is shown before clearing the cart to prevent accidental actions. The cart is cleared via Shopify’s cart API and the UI is immediately re-synchronised, ensuring item quantities, totals, and the cart counter remain consistent.
 
-## Submission
+- **"New" product badge**
+  A "New" badge is displayed based on the product creation date (`product.created_at`). The logic compares the current date with the product’s creation date and shows the badge if the product falls within a defined time window.
 
-### When you're done, submit:
+  As all products in this project share the same creation date, the threshold was adjusted to ensure the badge is visible for demonstration purposes. In a production environment, this could also be driven by product tags or metafields to allow greater control.
 
--   A GitHub repository with your code.
--   A README file with instructions on how to set up and run your project locally.
+- **Cart item count indicator**
+  The header includes a live-updating cart counter reflecting the current number of items, which also serves as a trigger to open the cart drawer.
 
-### What We're Looking For
+- **Points earned based on cart total**
+  The cart includes a message showing points earned, calculated as 1 point per £10 of the cart total (rounded down). The value updates dynamically as items are added or removed.
 
--   Functionality: Does your solution meet the requirements?
--   Code Quality: Is your code clean, readable, and well-organized?
--   User Experience: Is the interface intuitive and easy to use?
+## Tech Stack
+- Shopify (Liquid)
+- JavaScript (Vanilla)
+- HTML / CSS
+- Shopify AJAX API
 
-### Good Luck!
+## Setup
+1. Clone the repository
+2. Run `shopify theme serve`
+3. Open the local development URL
 
-If you run into any issues or have any questions, feel free to reach out to a.pearson@digital-velocity.co.uk
+## Future Improvements & Approach
+
+The current implementation focuses on core functionality. The following improvements would enhance the overall user experience and scalability of the solution:
+
+- **Wishlist functionality**
+  The wishlist button is currently UI-only. To implement it fully, I would add a separate favourites section within the cart drawer, clearly separated from cart items and excluded from cart totals.
+
+  Each saved item would include an Add to cart action to move it into the main cart flow, along with a Remove from favourites action for independent management.
+
+- **Quantity controls inside the cart drawer**
+  A further improvement would be to add plus and minus controls directly to each cart item within the cart drawer, allowing users to adjust quantities without returning to the collection page.
+
+  My approach would be to connect these controls to Shopify’s cart update endpoints, then re-fetch and re-render the cart after each interaction so item quantities, totals, points earned, and the cart counter remain in sync across the interface.
+
+- **Display product size (variant information)**
+  The current implementation does not display size information. After checking Shopify’s documentation, it looks like size is not a direct field on the product and is instead handled through variants.
+
+  To support this, I would display the size of each product on the product card based on its variant data, ensuring the information shown matches the version of the product being added to the cart.
+
+- **Non-blocking cart feedback (toast message)**
+  Currently, the cart drawer opens every time a product is added or removed, providing confirmation to the user. However, this interrupts the flow, especially when adding multiple items in quick succession.
+
+  To improve this, I would replace the automatic cart drawer behaviour with a lightweight toast message (e.g. “Product added” / “Product removed”) that appears briefly without blocking the interface. The cart would still update in the background, including totals and item count.
+
+  This approach allows users to continue browsing and adjusting quantities more efficiently, while still receiving clear feedback for their actions.
+
+- **Sticky header with cart access**
+  To support this interaction, I would make the header sticky so the cart icon and item count remain visible at all times. This ensures users can access the cart whenever needed without interrupting their browsing flow.
+
+
+## Author
+
+Marta Vasallo Perez

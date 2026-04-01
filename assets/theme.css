@@ -1,0 +1,270 @@
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+
+}
+
+/* COLLECTION PAGE */
+
+.collection-page {
+  padding: 40px 24px;
+}
+
+.collection-page__inner {
+  max-width: 1312px;
+  margin: 0 auto;
+}
+
+.collection-page__title {
+  text-align: center;
+  padding: 30px 10px 30px 10px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 30px;
+  line-height: 150%;
+  letter-spacing: -0.2px;
+  vertical-align: middle;
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+
+/* PRODUCT CARD */
+
+.product-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.product-card__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 11px;
+  border-radius: 6px;
+  background: #B2DAE0;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.product-card__wishlist {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 26px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: #8F9296;
+}
+
+.product-card {
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0px 0px 15px -2px #0000001A;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card__image {
+  width: 100%;
+  height: 278px;
+  display: block;
+  border-radius: 6px;
+}
+
+.product-card__title {
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0px;
+  margin: 0;
+  overflow: hidden;
+  line-height: 1.4;
+  min-height: 45px;
+}
+
+.product-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-card__divider {
+  height: 1px;
+  background: #DEDEDE;
+}
+
+.product-card__price {
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 22px;
+  letter-spacing: 0px;
+  text-align: right;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.product-card__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: auto;
+}
+
+.quantity-selector {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.quantity-selector__button {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: #E9ECF0;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.quantity-selector__value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+
+@media (max-width: 1100px) {
+  .collection-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .collection-page {
+    padding: 32px 16px;
+  }
+
+  .collection-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .collection-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* HEADER AND FOOTER */
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.site-header, .site-footer {
+  background-color: #1E3563;
+}
+
+
+.header-container, .footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 20px;
+}
+
+.site-logo, .footer-logo {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.footer-links {
+  display: flex;
+  gap: 30px;
+  width: 40%;
+}
+
+.footer-links ul {
+  width: 50%;
+}
+
+.footer-text {
+  color: #ffffff;
+  font-size: 14px;
+  max-width: 600px;
+}
+
+
+.open-cart-button {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.cart-icon {
+  display: block;
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #68DD7C;
+  color: black;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+
+@media (max-width: 768px) {
+  .footer-container {flex-direction: column;}
+  .footer-links {width: 100%;}
+
+}
+
+
+
+
+.product-card__badge {
+  opacity: 0; /* or visibility: hidden */
+}
+
+.product-card__badge.is-visible {
+  opacity: 1;
+}
