@@ -4,6 +4,10 @@
 
 A Shopify-based collection page experience with dynamic cart functionality built using the AJAX API.
 
+## Live preview
+
+https://your-store-name.myshopify.com/collections/all
+
 ## Overview
 This project is a Shopify-based ecommerce implementation focused on the collection page experience. It allows users to browse products, adjust quantities, and add items to the cart directly from the collection page.
 
@@ -62,11 +66,6 @@ Throughout the process, I prioritised clarity and simplicity over premature opti
 - JavaScript (Vanilla)
 - HTML / CSS
 - Shopify AJAX API
-
-## Setup
-1. Clone the repository
-2. Run `shopify theme serve`
-3. Open the local development URL
 
 ## Future Improvements & Approach
 
