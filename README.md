@@ -18,9 +18,18 @@ To run this project locally:
 shopify theme dev --store=velocity-tech-test --password=YOUR_THEME_ACCESS_PASSWORD
 ```
 
+
 4. Open the local development URL provided by Shopify CLI
 
 Note: A valid theme access password is required to run the project locally. This is not included in the repository for security reasons.
+
+## Where to view the implementation
+
+The main functionality of this project is implemented on the collection page:
+
+/collections/all
+
+Once the development server is running, navigate to this URL to view the product grid, quantity controls, and cart drawer functionality.
 
 
 ## Overview
